@@ -1,0 +1,23 @@
+version: "3.3"
+
+networks:
+  net1:
+    ipam:
+      config:
+      - subnet: 10.10.1.0/24
+
+
+services:
+  bind9:
+    image: "ubuntu/bind9"
+    volumes:
+      - bind:/etc/bind/
+    container_name: teste1
+    ports: 
+      - "30053:53"
+    tty: true
+    networks:
+     - net1
+
+volumes:
+  bind:
